@@ -3,17 +3,17 @@ import { prisma } from "../app";
 
 export const createBook = async (req: Request, res: Response) => {
   try {
-    const { title, author, summary, pages } = req.body;
+    const { title, userId, summary, pages } = req.body;
 
-    if (!title || !author) {
-      res.status(400).json({ error: "Title and author are required" });
+    if (!title || !userId) {
+      res.status(400).json({ error: "Title and userId are required" });
       return;
     }
 
     const newBook = await prisma.book.create({
       data: {
         title: title,
-        author: author,
+        userId: userId,
         summary: summary,
         pages: pages,
       },
@@ -59,11 +59,11 @@ export const getBookById = async (req: Request, res: Response) => {
 export const updateBook = async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);
-    const { title, author, summary, pages, published } = req.body;
+    const { title, userId, summary, pages, published } = req.body;
 
     const updatedBook = await prisma.book.update({
       where: { id },
-      data: { title, author, summary, pages, published },
+      data: { title, userId, summary, pages, published },
     });
     res.status(200).json(updatedBook);
   } catch (error) {
