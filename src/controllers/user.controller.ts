@@ -28,10 +28,8 @@ export const getUserById = async (req: Request, res: Response) => {
   try {
     const id = String(req.params.id);
 
-    // We ask Prisma to find the user...
     const user = await prisma.user.findUnique({
       where: { id },
-      // THE MAGIC LINE: Bring their books with them!
       include: {
         books: true,
       },

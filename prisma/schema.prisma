@@ -11,13 +11,11 @@ model User {
   email     String   @unique
   name      String
   
-  // This line tells Prisma: "A User can have many books"
   books     Book[]   
   
   createdAt DateTime @default(now())
 }
 
-// 2. OUR UPDATED BOOK MODEL
 model Book {
   id        String   @id @default(cuid())
   title     String
@@ -26,8 +24,7 @@ model Book {
   published Boolean  @default(false)
   createdAt DateTime @default(now())
 
-  // We are removing the old "author String" line, and replacing it with these two lines!
-  // This links the Book directly to a specific User's ID.
+  
   userId    String
   author    User     @relation(fields: [userId], references: [id])
 }
