@@ -7,10 +7,10 @@
   "type": "commonjs",
   "main": "src/index.ts",
   "scripts": {
-    "test": "jest",
+    "test": "jest --runInBand",
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "ts-node src/server.ts"
+    "dev": "ts-node-dev src/app.ts"
   },
   "devDependencies": {
     "@types/express": "^5.0.6",
